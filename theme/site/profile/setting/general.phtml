@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?= $this->meta->head($meta['head']) ?>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="pt-4"></div>
+                <h1><?= $info->title ?></h1>
+
+                <hr>
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <?php $this->partial('profile/setting/tabs'); ?>
+                    </div>
+
+                    <form method="POST" class="col-md-9">
+                        <?php if($saved): ?>
+                            <div class="alert alert-success"><strong>Success!</strong> Your account is updated</div>
+                        <?php endif; ?>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Fullname</label>
+                                    <input type="text" name="fullname" class="form-control" required value="<?= $this->req->getPost('fullname', $profile->fullname ?? '') ?>">
+                                    <?php if($err = $form->getError('fullname')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Birthdate</label>
+                                    <input type="date" name="bdate" class="form-control" required value="<?= $this->req->getPost('bdate', $profile->bdate ?? '') ?>">
+                                    <?php if($err = $form->getError('bdate')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Birth Place</label>
+                                    <input type="text" name="bplace" class="form-control" required value="<?= $this->req->getPost('bplace', $profile->bplace ?? '') ?>">
+                                    <?php if($err = $form->getError('bplace')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Avatar</label>
+                                    <input type="url" name="avatar" class="form-control" required value="<?= $this->req->getPost('avatar', $profile->avatar ?? '') ?>">
+                                    <?php if($err = $form->getError('avatar')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <select name="gender" class="form-control">
+                                        <?php $val = $this->req->getPost('gender', $profile->gender); ?>
+                                        <option value="1"<?= ($val==1?' selected':'') ?>>Male</option>
+                                        <option value="2"<?= ($val==2?' selected':'') ?>>Female</option>
+                                    </select>
+                                    <?php if($err = $form->getError('gender')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" name="height" class="form-control" required value="<?= $this->req->getPost('height', $profile->height ?? '') ?>">
+                                    <?php if($err = $form->getError('height')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" name="weight" class="form-control" required value="<?= $this->req->getPost('weight', $profile->weight ?? '') ?>">
+                                    <?php if($err = $form->getError('weight')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Skin</label>
+                                    <input type="text" name="skin" class="form-control" required value="<?= $this->req->getPost('skin', $profile->skin ?? '') ?>">
+                                    <?php if($err = $form->getError('skin')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Biography</label>
+                                    <textarea class="form-control" name="biography"><?= $this->req->getPost('biography', $profile->biography) ?></textarea>
+                                    <?php if($err = $form->getError('biography')): ?>
+                                        <small class="form-text text-muted"><?= $err->text ?></small>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <?= $this->meta->foot($meta['foot']) ?>
+</body>
+</html>

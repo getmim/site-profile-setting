@@ -1,0 +1,23 @@
+<?php
+    $tabs = [
+        'account',
+        'contact',
+        'education',
+        'general',
+        'password',
+        'profession',
+        'social'
+    ];
+?>
+
+<div class="list-group">
+    <?php foreach($tabs as $tab): ?>
+        <?php
+            $active = $tab == $this->req->param->type;
+            $next   = $this->router->to('siteProfileSetting', ['type'=>$tab]);
+        ?>
+    <a href="<?= $next ?>" class="list-group-item list-group-item-action<?= ($active?' active':'') ?>">
+        <?= $tab ?>
+    </a>
+    <?php endforeach; ?>
+</div>
