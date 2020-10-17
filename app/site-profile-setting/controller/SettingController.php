@@ -36,6 +36,10 @@ class SettingController extends \Site\Controller
         $params['form']  = $form;
         $params['saved'] = false;
 
+        $contact = json_decode($profile->contact);
+        foreach($contact as $key => $val)
+            $profile->{'contact-' . $key} = $val;
+
         if(!($valid = $form->validate($profile)))
             return;
 
