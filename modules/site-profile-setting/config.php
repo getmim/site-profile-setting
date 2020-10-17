@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'site-profile-setting',
-    '__version' => '0.0.1',
+    '__version' => '0.0.2',
     '__git' => 'git@github.com:getmim/site-profile-setting.git',
     '__license' => 'MIT',
     '__author' => [
@@ -157,21 +157,31 @@ return [
                 ]
             ],
             'site.profile.password' => [
-                'password' => [
-                    'label' => 'Password',
+                'old-password' => [
+                    'label' => 'Currect Password',
                     'type' => 'password',
                     'meter' => TRUE,
                     'rules' => [
+                        'required' => true
+                    ]
+                ],
+                'password' => [
+                    'label' => 'New Password',
+                    'type' => 'password',
+                    'meter' => TRUE,
+                    'rules' => [
+                        'required' => true,
                         'length' => [
                             'min' => 6
                         ]
                     ]
                 ],
                 'retype-password' => [
-                    'label' => 'Retype Password',
+                    'label' => 'Retype New Password',
                     'type' => 'password',
                     'meter' => TRUE,
                     'rules' => [
+                        'required' => true,
                         'length' => [
                             'min' => 6
                         ]

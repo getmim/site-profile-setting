@@ -101,6 +101,9 @@ class SettingController extends \Site\Controller
         if(!($valid = $form->validate($profile)))
             return;
 
+        if(!password_verify($valid->{'old-password'}, $profile->password))
+            return $form->addError('old-password', 0, 'The password is not correct');
+
         if($valid->password != $valid->{'retype-password'})
             return $form->addError('retype-password', 0, 'Both password not match');
 
